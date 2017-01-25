@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+<div data-bind="with: report">
+    @Html.Partial("~/Views/Report/ReportPartial.cshtml")
+</div>
+
+
+
+@Scripts.Render("~/bundles/report")

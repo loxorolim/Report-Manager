@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div data-bind="foreach: reports">
+    @Html.Partial("~/Views/Report/ReportPartial.cshtml")
+</div>
+
+
+@Scripts.Render("~/bundles/index")
+

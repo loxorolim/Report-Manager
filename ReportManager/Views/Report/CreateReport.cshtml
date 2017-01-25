@@ -1,0 +1,119 @@
+﻿@model ReportManager.ViewModels.CreateReportViewModel
+@{
+    ViewBag.Title = "CreateReport";
+}
+
+<div data-bind="with: report">
+    <div class="well well-sm">
+        <form method="post" class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <fieldset>
+                <legend>Create a report!</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Data</label>
+                    <div class="col-lg-10">
+                        <input id="reportDate" name="reportDate" type="datetime-local" class="form-control" data-bind="value: date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Status</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="status" name="status" data-bind="value: status">
+                            @{
+                                int counter = 0;
+                                foreach (var statusType in @ViewData["ReportStatuses"] as IList<string>)
+                                {
+                                    <option value="@counter">@statusType</option>
+                                    counter++;
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Fluxo</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="flow" name="flow" class="form-control" data-bind="value: flow">
+                        @Html.ValidationMessageFor(model => model.Flow, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Aplicação</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="application" name="application" class="form-control" data-bind="value: application">
+                        @Html.ValidationMessageFor(model => model.Application, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Impacto</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="impact" name="impact" class="form-control" data-bind="value: impact">
+                        @Html.ValidationMessageFor(model => model.Impact, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Solução paliativa</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="workaround" name="workaround" class="form-control" data-bind="value: workaround">
+                        @Html.ValidationMessageFor(model => model.Workaround, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Tempo da solução</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="solutionTime" name="solutionTime" class="form-control" data-bind="value: solutionTime">
+                        @Html.ValidationMessageFor(model => model.SolutionTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Tempo na madrugada</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="workaroundTime" name="workaroundTime" class="form-control" data-bind="value: workaroundTime">
+                        @Html.ValidationMessageFor(model => model.WorkaroundTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Incomodado</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="reporter" name="reporter" class="form-control" data-bind="value: reporter">
+                        @Html.ValidationMessageFor(model => model.Reporter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Solução definitiva</label>
+                    <div class="col-lg-10">
+                        <textarea id="solution" name="solution" class="form-control" data-bind="value: solution"></textarea>
+                        @Html.ValidationMessageFor(model => model.Solution, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Problema</label>
+                    <div class="col-lg-10">
+                        <textarea id="description" name="description" class="form-control" data-bind="value: description"></textarea>
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Time responsável</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="responsibleTeam" name="responsibleTeam" class="form-control" data-bind="value: responsibleTeam">
+                        @Html.ValidationMessageFor(model => model.ResponsibleTeam, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <input type="reset" class="btn btn-default" value="Cancel">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+@Scripts.Render("~/bundles/createReport")
+
+
+
