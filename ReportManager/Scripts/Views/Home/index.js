@@ -21,7 +21,9 @@ var Index = {
             dataType: 'json',
 
             success: function (result) {
-                Index.viewModel.reports(result);
+                var concatedResult = Index.viewModel.reports().concat(result);
+                Index.viewModel.reports(concatedResult);
+                Index.start = concatedResult.length;
             },
 
             error: function (error) {
