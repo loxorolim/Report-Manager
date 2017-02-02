@@ -10,8 +10,23 @@ var Index = {
     init: function () {
         ko.applyBindings(Index.viewModel);
     },
-    fetchReports: function (json) {
-        Index.viewModel.reports.push(json);
+    fetchReports: function () {
+        $.ajax({
+            type: 'GET',
+            url: '/Report/GetReportCollectionByRecentDate/1',
+            data: {
+                start: Index.start,
+                size: Index.numberToFetch
+            },
+            dataType: 'json',
+
+            success: function (result) {
+                Index.viewModel.reports(result);
+            },
+
+            error: function (error) {
+            }
+        });
     }
 }
 

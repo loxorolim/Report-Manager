@@ -1,9 +1,9 @@
-﻿using ReportManager.BusinessRules.Report;
-using ReportManager.ViewModels;
-using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using ReportManager.BusinessRules.DataTransferObjects;
+using ReportManager.BusinessRules.Report;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReportManager.Controllers
@@ -11,10 +11,29 @@ namespace ReportManager.Controllers
     public class ReportController : Controller
     {
         private ReportBr _reportBR;
+        private JsonSerializerSettings _jsonSerializerSettings;
 
         public ReportController()
         {
             _reportBR = new ReportBr();
+            _jsonSerializerSettings = new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                Converters = { new StringEnumConverter { CamelCaseText = true } }
+            };
+        }
+
+
+        [HttpGet]
+        public string GetReportCollectionByRecentDate(int start, int size)
+        {
+            IEnumerable<ReportDTO> reports = _reportBR.GetReportCollectionByRecentDate(start,size);
+
+            string json = JsonConvert.SerializeObject(reports,_jsonSerializerSettings);
+
+            return json;
         }
 
         [HttpGet]
@@ -34,13 +53,17 @@ namespace ReportManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateReport(CreateReportViewModel createReportViewModel)
+        public ActionResult CreateReport(ReportDTO reportDto)
         {
-
-            List<string> reportStatusTypes = _reportBR.GetReportStatusTypes();
-            ViewData["ReportStatuses"] = reportStatusTypes;
-
-            return View();
+            if(ModelState.IsValid)
+            {
+                _reportBR.CreateReport(reportDto);
+                return View("Index");
+            }
+            // deu xibu
+            return View("500");
+            
+            
         }
 
 

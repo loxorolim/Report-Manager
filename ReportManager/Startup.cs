@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using ReportManager.BusinessRules;
+using ReportManager.BusinessRules.AutoMapper;
 
 [assembly: OwinStartupAttribute(typeof(ReportManager.Startup))]
 namespace ReportManager
@@ -11,6 +11,7 @@ namespace ReportManager
         {
             //ConfigureAuth(app);
             //BusinessRulesXPTO.Main();
+            AutoMapperConfiguration.Configure();
         }
     }
 }

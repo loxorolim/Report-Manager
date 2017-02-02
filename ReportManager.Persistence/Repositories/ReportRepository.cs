@@ -1,10 +1,7 @@
 ﻿using LiteDB;
-using ReportManager.Persistence.Models;
-using System;
+using ReportManager.Persistence.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReportManager.Persistence.Repositories
 {
@@ -15,30 +12,30 @@ namespace ReportManager.Persistence.Repositories
 
         }
 
-        public ReportModel GetReport(int id)
+        public ReportEntity GetReport(int id)
         {
             using (var db = new LiteDatabase(_connectionString))
             {
-                var reports = db.GetCollection<ReportModel>("reports");
+                var reports = db.GetCollection<ReportEntity>("reports");
 
                 return reports.Find(t => t.Id == id).FirstOrDefault();
             }
         }
-        public IEnumerable<ReportModel> GetReportCollectionByRecentDate(int start, int size)
+        public IEnumerable<ReportEntity> GetReportCollectionByRecentDate(int start, int size)
         {
             using (var db = new LiteDatabase(_connectionString))
             {
-                var reports = db.GetCollection<ReportModel>("reports");
+                var reports = db.GetCollection<ReportEntity>("reports");
 
                 return reports.Find(Query.All("Date",Query.Descending), start, size);
             }
         }
 
-        public void InsertReport(ReportModel report)
+        public void InsertReport(ReportEntity report)
         {
             using (var db = new LiteDatabase(_connectionString))
             {
-                var reports = db.GetCollection<ReportModel>("reports");
+                var reports = db.GetCollection<ReportEntity>("reports");
 
                 reports.Insert(report);
             }
