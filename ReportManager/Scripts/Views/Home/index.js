@@ -13,7 +13,7 @@ var Index = {
     fetchReports: function () {
         $.ajax({
             type: 'GET',
-            url: '/Report/GetReportCollectionByRecentDate/1',
+            url: '/Report/GetReportCollectionByRecentDate',
             data: {
                 start: Index.start,
                 size: Index.numberToFetch

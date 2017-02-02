@@ -21,7 +21,11 @@ namespace ReportManager.Controllers
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
-                Converters = { new StringEnumConverter { CamelCaseText = true } }
+                Converters =
+                {
+                    new StringEnumConverter { CamelCaseText = true },
+                    new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" }
+                }
             };
         }
 
