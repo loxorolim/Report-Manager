@@ -1,0 +1,66 @@
+﻿.day{
+    font-size:large;
+    display:block;
+}
+.month {
+    font-size:large;
+    display:block;
+}
+.year {
+    font-size:medium;
+    display:block;
+}
+
+.report-header {
+    display:table; 
+    width:100%;
+}
+.report-date {
+    display:table-cell; 
+    width: 15%; 
+    padding: 5px; 
+    background-color: #222222;
+}
+.report-date-element {
+    text-align: center;
+    color: #9D9D9D
+}
+.report-title {
+    display:table-cell; 
+    width: 85%;
+    border-style:solid; 
+    background-color:whitesmoke;
+    border-width: 2px; 
+    text-align:center; 
+    vertical-align: middle;
+}
+.report-content {
+    margin: 0px 20px 0px 20px; 
+    border-left:solid; 
+    border-right:solid;
+    border-bottom:solid;
+    background-color:white
+}
+.report {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.report-cell-right {
+    display: table-cell; 
+    width:50%; 
+    font-size: medium; 
+    text-align: left; 
+    padding-left: 10px;
+}
+
+.report-cell-left {
+    display: table-cell; 
+    width:50%; 
+    font-size: medium; 
+    text-align: right; 
+    padding-right: 10px;
+}
+
+

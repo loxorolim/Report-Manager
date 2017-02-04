@@ -23,7 +23,7 @@ namespace ReportManager.Controllers
                 MissingMemberHandling = MissingMemberHandling.Ignore,
                 Converters =
                 {
-                    new StringEnumConverter { CamelCaseText = true },
+                    new StringEnumConverter { CamelCaseText = false },
                     new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" }
                 }
             };

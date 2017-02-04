@@ -9,6 +9,7 @@ var Index = {
     },
     init: function () {
         ko.applyBindings(Index.viewModel);
+        Index.fetchReports();
     },
     fetchReports: function () {
         $.ajax({
