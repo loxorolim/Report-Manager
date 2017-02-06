@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using ReportManager.BusinessRules.DataTransferObjects;
 using ReportManager.BusinessRules.Report;
+using ReportManager.Commons;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -11,12 +13,12 @@ namespace ReportManager.Controllers
     public class ReportController : Controller
     {
         private ReportBr _reportBR;
-        private JsonSerializerSettings _jsonSerializerSettings;
+        private JsonSerializer _jsonSerializer;
 
         public ReportController()
         {
             _reportBR = new ReportBr();
-            _jsonSerializerSettings = new JsonSerializerSettings()
+            var jsonSerializerSettings = new JsonSerializerSettings()
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore,
@@ -27,6 +29,7 @@ namespace ReportManager.Controllers
                     new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" }
                 }
             };
+            _jsonSerializer = JsonSerializer.Create(jsonSerializerSettings);
         }
 
 
@@ -35,9 +38,19 @@ namespace ReportManager.Controllers
         {
             IEnumerable<ReportDTO> reports = _reportBR.GetReportCollectionByRecentDate(start,size);
 
-            string json = JsonConvert.SerializeObject(reports,_jsonSerializerSettings);
+            JArray jsonArray = new JArray();
 
-            return json;
+            foreach(var report in reports)
+            {
+                JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
+                jsonObject.Add("year", report.Date.Year);
+                jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
+                jsonObject.Add("day", report.Date.Day);
+                jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
+                jsonArray.Add(jsonObject);
+            }
+
+            return jsonArray.ToString();
         }
 
         [HttpGet]
@@ -59,6 +72,7 @@ namespace ReportManager.Controllers
         [HttpPost]
         public ActionResult CreateReport(ReportDTO reportDto)
         {
+            //Fluxo não vai poder ser nulo.
             if(ModelState.IsValid)
             {
                 _reportBR.CreateReport(reportDto);
