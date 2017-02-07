@@ -27,6 +27,12 @@ namespace ReportManager.BusinessRules.Report
 
             return Mapper.Map<IEnumerable<ReportEntity>,IEnumerable<ReportDTO>>(reports);
         }
+        public ReportDTO GetReportById(int id)
+        {
+            ReportEntity report = _reportRepository.GetReportById(id);
+
+            return Mapper.Map<ReportEntity, ReportDTO>(report); ;
+        }
 
         public void CreateReport(ReportDTO reportDto)
         {

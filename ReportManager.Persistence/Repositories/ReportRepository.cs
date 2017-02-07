@@ -12,7 +12,7 @@ namespace ReportManager.Persistence.Repositories
 
         }
 
-        public ReportEntity GetReport(int id)
+        public ReportEntity GetReportById(int id)
         {
             using (var db = new LiteDatabase(_connectionString))
             {

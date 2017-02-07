@@ -9,74 +9,80 @@
                 <div class="report-date-element"><span style="font-size: smaller" data-bind="text: hour" ></span></div>
             </div>
             <div class="report-title">
-                <span style="font-size: xx-large"></span>
+                <span style="font-size: xx-large" data-bind="text: flow, visible: !editMode()"></span>
+                <input style="font-size: xx-large" data-bind="value: flow, visible: editMode()">
             </div>
         </div>
         <div class="report-content">
             <!-- ko if: "status" in $data -->
             <div class="report-header">
                <span class="report-cell-left"><strong>Estado:</strong></span>
-               <span class="report-cell-right" data-bind="text: status"></span>
+               <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
+               <input class="report-cell-right" data-bind="value: status, visible: editMode()">
             </div>
             <!-- /ko -->
-            <!-- ko if: "flow" in $data -->
-            <div class="report-header">
-               <span class="report-cell-left"><strong>Fluxo:</strong></span>
-               <span class="report-cell-right" data-bind="text: flow"></span>
-            </div>
-            <!-- /ko -->
+
             <!-- ko if: "application" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>
-                <span class="report-cell-right" data-bind="text: application"></span>
+                <span class="report-cell-right" data-bind="text: application, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: application, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "impact" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Impacto:</strong></span>
-                <span class="report-cell-right" data-bind="text: impact"></span>
+                <span class="report-cell-right" data-bind="text: impact, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: impact, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "workaround" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
-                <span class="report-cell-right" data-bind="text: workaround"></span>
+                <span class="report-cell-right" data-bind="text: workaround, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: workaround, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "workaroundTime" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
-                <span class="report-cell-right" data-bind="text: status"></span>
+                <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: status, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "reporter" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
-                <span class="report-cell-right" data-bind="text: reporter"></span>
+                <span class="report-cell-right" data-bind="text: reporter, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: reporter, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "solution" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução:</strong></span>
-                <span class="report-cell-right" data-bind="text: solution"></span>
+                <span class="report-cell-right" data-bind="text: solution, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: solution, visible: editMode()">
             </div>
             <!-- /ko 
             <!-- ko if: "solutionTime" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
-                <span class="report-cell-right" data-bind="text: solutionTime"></span>
+                <span class="report-cell-right" data-bind="text: solutionTime, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: solutionTime, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "description" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Problema:</strong></span>
-                <span class="report-cell-right" data-bind="text: description"></span>
+                <span class="report-cell-right" data-bind="text: description, visible: !editMode()"></span>
+                <textarea class="report-cell-right" data-bind="value: description, visible: editMode()"></textarea>
             </div>
             <!-- /ko -->
             <!-- ko if: "responsibleTeam" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Time responsável:</strong></span>
-                <span class="report-cell-right" data-bind="text: responsibleTeam"></span>
+                <span class="report-cell-right" data-bind="text: responsibleTeam, visible: !editMode()"></span>
+                <input class="report-cell-right" data-bind="value: responsibleTeam, visible: editMode()">
             </div>
             <!-- /ko -->
         </div>

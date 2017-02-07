@@ -42,22 +42,46 @@ namespace ReportManager.Controllers
 
             foreach(var report in reports)
             {
-                JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
-                jsonObject.Add("year", report.Date.Year);
-                jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
-                jsonObject.Add("day", report.Date.Day);
-                jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
-                jsonArray.Add(jsonObject);
+                if (report.Date != null && report.Flow != null)
+                {
+                    JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
+                    jsonObject.Add("year", report.Date.Year);
+                    jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
+                    jsonObject.Add("day", report.Date.Day);
+                    jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
+                    jsonArray.Add(jsonObject);
+                }
             }
 
             return jsonArray.ToString();
         }
 
         [HttpGet]
+        public string GetReportJson(int id)
+        {
+            ReportDTO report = _reportBR.GetReportById(id);
+
+            if (report.Date != null && report.Flow != null)
+            {
+                JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
+                jsonObject.Add("year", report.Date.Year);
+                jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
+                jsonObject.Add("day", report.Date.Day);
+                jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
+                return jsonObject.ToString();
+            }
+            return "";
+
+        }
+
+        [HttpGet]
         public ActionResult GetReport(int id)
         {
-            return View("Report");
+            
+            return View(id);
+
         }
+
 
         [HttpGet]
         public ActionResult CreateReport()
@@ -85,18 +109,13 @@ namespace ReportManager.Controllers
         }
 
 
-
         [HttpPost]
         public ActionResult InsertReport(int id)
         {
             return View();
         }
         
-        [HttpGet]
-        public string GetReportCollectionByRecentDateJson(int start, int size)
-        {
-            return "wow";
-        }
+
 
 
     }

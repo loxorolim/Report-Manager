@@ -3,7 +3,7 @@
 });
 var Index = {
     start: 0,
-    numberToFetch: 10,
+    numberToFetch: 100,
     viewModel: {
         reports: ko.observableArray([])
     },
@@ -22,9 +22,12 @@ var Index = {
             dataType: 'json',
 
             success: function (result) {
+                result.forEach(function(entry) {
+                    entry["editMode"] = ko.observable(false);
+                });
                 var concatedResult = Index.viewModel.reports().concat(result);
                 Index.viewModel.reports(concatedResult);
-                Index.start = concatedResult.length;
+                Index.start += result.length;
             },
 
             error: function (error) {
