@@ -36,6 +36,7 @@
 }
 .report-content {
     margin: 0px 20px 0px 20px; 
+    padding: 20px;
     border-left:solid; 
     border-right:solid;
     border-bottom:solid;
@@ -63,4 +64,7 @@
     padding-right: 10px;
 }
 
+.editable-element {
+    border: ridge;
+}
 

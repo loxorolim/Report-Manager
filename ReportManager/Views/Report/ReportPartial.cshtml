@@ -1,4 +1,4 @@
-﻿
+﻿<!-- ko if: !editMode() -->
 <div class="col-md-8 col-md-offset-2">
     <div class="report">
         <div class="report-header">
@@ -7,10 +7,10 @@
                 <div class="report-date-element"><span style="font-size: medium"  data-bind="text: month"></span></div>
                 <div class="report-date-element"><span style="font-size: small"   data-bind="text: day"  ></span></div>
                 <div class="report-date-element"><span style="font-size: smaller" data-bind="text: hour" ></span></div>
+
             </div>
             <div class="report-title">
                 <span style="font-size: xx-large" data-bind="text: flow, visible: !editMode()"></span>
-                <input style="font-size: xx-large" data-bind="value: flow, visible: editMode()">
             </div>
         </div>
         <div class="report-content">
@@ -18,7 +18,6 @@
             <div class="report-header">
                <span class="report-cell-left"><strong>Estado:</strong></span>
                <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
-               <input class="report-cell-right" data-bind="value: status, visible: editMode()">
             </div>
             <!-- /ko -->
 
@@ -26,65 +25,130 @@
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>
                 <span class="report-cell-right" data-bind="text: application, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: application, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "impact" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Impacto:</strong></span>
                 <span class="report-cell-right" data-bind="text: impact, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: impact, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "workaround" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
                 <span class="report-cell-right" data-bind="text: workaround, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: workaround, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "workaroundTime" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
                 <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: status, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "reporter" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
                 <span class="report-cell-right" data-bind="text: reporter, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: reporter, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "solution" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução:</strong></span>
                 <span class="report-cell-right" data-bind="text: solution, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: solution, visible: editMode()">
             </div>
             <!-- /ko 
             <!-- ko if: "solutionTime" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
                 <span class="report-cell-right" data-bind="text: solutionTime, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: solutionTime, visible: editMode()">
             </div>
             <!-- /ko -->
             <!-- ko if: "description" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Problema:</strong></span>
                 <span class="report-cell-right" data-bind="text: description, visible: !editMode()"></span>
-                <textarea class="report-cell-right" data-bind="value: description, visible: editMode()"></textarea>
             </div>
             <!-- /ko -->
             <!-- ko if: "responsibleTeam" in $data -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Time responsável:</strong></span>
                 <span class="report-cell-right" data-bind="text: responsibleTeam, visible: !editMode()"></span>
-                <input class="report-cell-right" data-bind="value: responsibleTeam, visible: editMode()">
             </div>
             <!-- /ko -->
         </div>
     </div>
 </div>
+<!-- /ko -->
+<!-- ko if: editMode() -->
+<div class="col-md-8 col-md-offset-2">
+    <div class="report">
+        <div class="report-header">
+            <div class="report-date">
+                <div class="report-date-element"><input id="date" name="date" type="datetime-local" data-bind="value: date"></div>
+                    @*<div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: large" data-bind="text: year"></span></div>
+            <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: medium" data-bind="text: month"></span></div>
+            <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: small" data-bind="text: day"></span></div>
+            <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: smaller" data-bind="text: hour"></span></div>*@
+
+                </div>
+            <div class="report-title">
+                <span contentEditable="true" class="editable-element" style="font-size: xx-large" data-bind="text: flow"></span>
+            </div>
+        </div>
+        <div class="report-content">
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Estado:</strong></span>
+                <div>
+                    <select id="status" name="status" data-bind="value: status">
+                        @{
+                            int counter = 0;
+                            foreach (var statusType in @ViewData["ReportStatuses"] as IList<string>)
+                            {
+                                <option value="@counter">@statusType</option>
+                                counter++;
+                            }
+                        }
+                    </select>
+                </div>
+
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Aplicação:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: application"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Impacto:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: impact"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: workaround"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: status"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Incomodado:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: reporter"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Solução:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: solution"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
+                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: solutionTime"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Problema:</strong></span>
+                <span contentEditable="true" class="report-cell-right  editable-element" data-bind="text: description"></span>
+            </div>
+            <div class="report-header">
+                <span class="report-cell-left"><strong>Time responsável:</strong></span>
+                <span contentEditable="true" class="report-cell-right  editable-element" data-bind="text: responsibleTeam"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
