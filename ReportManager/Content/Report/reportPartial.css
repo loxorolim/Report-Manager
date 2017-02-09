@@ -27,19 +27,26 @@
 }
 .report-title {
     display:table-cell; 
-    width: 85%;
     border-style:solid; 
     background-color:whitesmoke;
     border-width: 2px; 
     text-align:center; 
     vertical-align: middle;
 }
+.report-footer {
+    display:table-cell; 
+    border-style:solid; 
+    background-color:whitesmoke;
+    border-width: 2px; 
+    text-align:center; 
+    vertical-align: middle;
+    padding: 5px;
+}
 .report-content {
     margin: 0px 20px 0px 20px; 
     padding: 20px;
     border-left:solid; 
     border-right:solid;
-    border-bottom:solid;
     background-color:white
 }
 .report {

@@ -76,6 +76,13 @@
             </div>
             <!-- /ko -->
         </div>
+        <div class="report-header">
+            <div class="report-footer">
+                <button class="btn btn-default" data-bind="click: editMode.bind($data, true)">Editar <span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default">Copiar <span class="glyphicon glyphicon-copy"></span></button>
+                <button class="btn btn-default">Apagar <span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+        </div>
     </div>
 </div>
 <!-- /ko -->
@@ -92,7 +99,7 @@
 
                 </div>
             <div class="report-title">
-                <span contentEditable="true" class="editable-element" style="font-size: xx-large" data-bind="text: flow"></span>
+                <input contentEditable="true" class="editable-element" style="font-size: xx-large" data-bind="value: flow">
             </div>
         </div>
         <div class="report-content">
@@ -114,39 +121,45 @@
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: application"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: application"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Impacto:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: impact"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: impact"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: workaround"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: workaround"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: status"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: status"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: reporter"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: reporter"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: solution"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: solution"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
-                <span contentEditable="true" class="report-cell-right editable-element" data-bind="text: solutionTime"></span>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: solutionTime"/>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Problema:</strong></span>
-                <span contentEditable="true" class="report-cell-right  editable-element" data-bind="text: description"></span>
+                <textarea contentEditable="true" class="report-cell-right  editable-element" data-bind="value: description"></textarea>
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Time responsável:</strong></span>
-                <span contentEditable="true" class="report-cell-right  editable-element" data-bind="text: responsibleTeam"></span>
+                <input contentEditable="true" class="report-cell-right  editable-element" data-bind="value: responsibleTeam"/>
+            </div>
+        </div>
+        <div class="report-header">
+            <div class="report-footer">
+                <button class="btn btn-success" data-bind="click: editMode.bind($data, false)">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
+                <button class="btn btn-danger" data-bind="click: editMode.bind($data, false)">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
             </div>
         </div>
     </div>
