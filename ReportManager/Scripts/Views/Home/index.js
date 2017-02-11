@@ -24,6 +24,23 @@ var Index = {
             success: function (result) {
                 result.forEach(function(entry) {
                     entry["editMode"] = ko.observable(false);
+                    entry["copy"] = {};
+                    entry["makeCopy"] = function () {
+                        entry["editMode"](true);
+                        for (var attribute in entry) {
+                            if (attribute != "copy" && attribute != "makeCopy" && attribute != "restore") {
+                                entry["copy"][attribute] = entry[attribute];
+                            }
+                        }
+                    },
+                    entry["restore"] = function () {
+                        entry["editMode"](false);
+                        for (var attribute in entry["copy"]) {
+                            if (attribute != "copy" && attribute != "makeCopy" && attribute != "restore") {
+                                entry[attribute] = entry["copy"][attribute];
+                            }
+                        }
+                    }
                 });
                 var concatedResult = Index.viewModel.reports().concat(result);
                 Index.viewModel.reports(concatedResult);

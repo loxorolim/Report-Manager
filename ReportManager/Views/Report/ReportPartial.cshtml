@@ -78,8 +78,8 @@
         </div>
         <div class="report-header">
             <div class="report-footer">
-                <button class="btn btn-default" data-bind="click: editMode.bind($data, true)">Editar <span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-default">Copiar <span class="glyphicon glyphicon-copy"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { makeCopy()}">Editar <span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default" data-bind="click: function() {makeCopy()}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
                 <button class="btn btn-default">Apagar <span class="glyphicon glyphicon-trash"></span></button>
             </div>
         </div>
@@ -92,12 +92,12 @@
         <div class="report-header">
             <div class="report-date">
                 <div class="report-date-element"><input id="date" name="date" type="datetime-local" data-bind="value: date"></div>
-                    @*<div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: large" data-bind="text: year"></span></div>
-            <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: medium" data-bind="text: month"></span></div>
-            <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: small" data-bind="text: day"></span></div>
-            <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: smaller" data-bind="text: hour"></span></div>*@
+                @*<div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: large" data-bind="text: year"></span></div>
+                    <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: medium" data-bind="text: month"></span></div>
+                    <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: small" data-bind="text: day"></span></div>
+                    <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: smaller" data-bind="text: hour"></span></div>*@
 
-                </div>
+            </div>
             <div class="report-title">
                 <input contentEditable="true" class="editable-element" style="font-size: xx-large" data-bind="value: flow">
             </div>
@@ -121,31 +121,31 @@
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: application"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: application" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Impacto:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: impact"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: impact" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: workaround"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: workaround" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: status"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: status" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: reporter"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: reporter" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: solution"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: solution" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: solutionTime"/>
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: solutionTime" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Problema:</strong></span>
@@ -153,13 +153,13 @@
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Time responsável:</strong></span>
-                <input contentEditable="true" class="report-cell-right  editable-element" data-bind="value: responsibleTeam"/>
+                <input contentEditable="true" class="report-cell-right  editable-element" data-bind="value: responsibleTeam" />
             </div>
         </div>
         <div class="report-header">
             <div class="report-footer">
                 <button class="btn btn-success" data-bind="click: editMode.bind($data, false)">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
-                <button class="btn btn-danger" data-bind="click: editMode.bind($data, false)">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
+                <button class="btn btn-danger" data-bind="click: function() {restore()}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
             </div>
         </div>
     </div>
