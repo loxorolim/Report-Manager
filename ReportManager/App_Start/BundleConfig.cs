@@ -28,6 +28,7 @@ namespace ReportManager
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
                       "~/Scripts/knockout-3.4.1.js",
+                      "~/Scripts/knockout.mapping-latest.js",
                       "~/Scripts/Views/Home/index.js"
                       ));
 
