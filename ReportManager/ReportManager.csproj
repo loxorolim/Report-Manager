@@ -253,6 +253,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Views\Home\index.js" />
     <Content Include="Scripts\Views\Report\createReport.js" />
+    <Content Include="Scripts\Views\Report\reportPartial.js" />
     <Content Include="Scripts\Views\Report\report.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

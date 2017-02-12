@@ -36,6 +36,9 @@ namespace ReportManager
                       "~/Scripts/knockout-3.4.1.js",
                       "~/Scripts/Views/Report/report.js"
                       ));
+            bundles.Add(new ScriptBundle("~/bundles/reportPartial").Include(
+                      "~/Scripts/Views/Report/reportPartial.js"
+                      ));
             bundles.Add(new StyleBundle("~/Content/reportPartial").Include(
                       "~/Content/Report/reportPartial.css"
                       ));

@@ -78,8 +78,8 @@
         </div>
         <div class="report-header">
             <div class="report-footer">
-                <button class="btn btn-default" data-bind="click: function() { makeCopy()}">Editar <span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-default" data-bind="click: function() {makeCopy()}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setEditMode($data,true); ReportPartial.makeCopy($data)}">Editar <span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setEditMode($data,false); ReportPartial.makeCopy($data)}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
                 <button class="btn btn-default">Apagar <span class="glyphicon glyphicon-trash"></span></button>
             </div>
         </div>
@@ -158,8 +158,8 @@
         </div>
         <div class="report-header">
             <div class="report-footer">
-                <button class="btn btn-success" data-bind="click: function() {update()}">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
-                <button class="btn btn-danger"  data-bind="click: function() {restore()}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
+                <button class="btn btn-success" data-bind="click: function() {ReportPartial.setEditMode($data,false);}">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
+                <button class="btn btn-danger"  data-bind="click: function() {ReportPartial.setEditMode($data,false); ReportPartial.restore($data)}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
             </div>
         </div>
     </div>
