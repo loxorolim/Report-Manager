@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-});
-var ReportPartial = {
-    buildReport: function (json) {
-    },
+﻿var ReportPartial = {
     makeCopy: function (report) {
         report["copy"] = {};
         for (var attribute in report) {
