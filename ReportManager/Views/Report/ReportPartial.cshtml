@@ -1,29 +1,10 @@
-﻿<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-</div>
-<!-- ko if: !editMode() -->
+﻿<!-- ko if: !editMode() -->
 <div class="col-md-8 col-md-offset-2">
     <div class="report">
         <div class="report-header">
             <div class="report-date">
-                <div class="report-date-element"><span style="font-size: large"   data-bind="text: moment(date()).format('DD/MM/YYYY');" ></span></div>
-                <div class="report-date-element"><span style="font-size: medium"  data-bind="text: moment(date()).format('HH:mm');"></span></div>
+                <div class="report-date-element"><span style="font-size: large"   data-bind="text: moment(date()).format('DD/MM/YYYY')" ></span></div>
+                <div class="report-date-element"><span style="font-size: medium"  data-bind="text: moment(date()).format('HH:mm')"></span></div>
             </div>
             <div class="report-title">
                 <span style="font-size: xx-large" data-bind="text: flow, visible: !editMode()"></span>
