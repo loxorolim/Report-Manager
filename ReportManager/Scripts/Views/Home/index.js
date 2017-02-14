@@ -23,8 +23,9 @@ var Index = {
 
             success: function (result) {
                 result.forEach(function (entry, index) {
+                    result[index]["editMode"] = false
+                    result[index]["date"] = new Date(result[index]["date"]);
                     result[index] = ko.mapping.fromJS(entry);
-                    result[index]["editMode"] = ko.observable(false);
                 });
                 var concatedResult = Index.viewModel.reports().concat(result);
                 Index.viewModel.reports(concatedResult);

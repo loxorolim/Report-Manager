@@ -8,32 +8,33 @@ namespace ReportManager
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/Commons/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/Commons/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/Commons/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/Commons/bootstrap.js",
+                      "~/Scripts/Commons/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
-                      "~/Scripts/knockout-3.4.1.js",
-                      "~/Scripts/knockout.mapping-latest.js",
+                      "~/Scripts/Commons/knockout-3.4.1.js",
+                      "~/Scripts/Commons/moment.min.js",
+                      "~/Scripts/Commons/knockout.mapping-latest.js",
                       "~/Scripts/Views/Home/index.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/report").Include(
-                      "~/Scripts/knockout-3.4.1.js",
+                      "~/Scripts/Commons/knockout-3.4.1.js",
                       "~/Scripts/Views/Report/report.js"
                       ));
             bundles.Add(new ScriptBundle("~/bundles/reportPartial").Include(
@@ -44,8 +45,8 @@ namespace ReportManager
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/createReport").Include(
-                      "~/Scripts/jquery.validate*",
-                      "~/Scripts/knockout-3.4.1.js",
+                      "~/Scripts/Commons/jquery.validate*",
+                      "~/Scripts/Commons/knockout-3.4.1.js",
                       "~/Scripts/Views/Report/createReport.js"
                       ));
         }

@@ -14,22 +14,21 @@ namespace ReportManager.Controllers
     {
         private ReportBr _reportBR;
         private JsonSerializer _jsonSerializer;
+        private JsonSerializerSettings _jsonSerializerSettings;
 
         public ReportController()
         {
             _reportBR = new ReportBr();
-            var jsonSerializerSettings = new JsonSerializerSettings()
+            _jsonSerializerSettings = new JsonSerializerSettings()
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
                 Converters =
                 {
-                    new StringEnumConverter { CamelCaseText = false },
-                    new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" }
+                    new StringEnumConverter { CamelCaseText = false }//,
+                    //new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" }
                 }
             };
-            _jsonSerializer = JsonSerializer.Create(jsonSerializerSettings);
+            _jsonSerializer = JsonSerializer.Create(_jsonSerializerSettings);
         }
 
 
@@ -38,22 +37,22 @@ namespace ReportManager.Controllers
         {
             IEnumerable<ReportDTO> reports = _reportBR.GetReportCollectionByRecentDate(start,size);
 
-            JArray jsonArray = new JArray();
+            //JArray jsonArray = new JArray();
 
-            foreach(var report in reports)
-            {
-                if (report.Date != null && report.Flow != null)
-                {
-                    JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
-                    jsonObject.Add("year", report.Date.Year);
-                    jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
-                    jsonObject.Add("day", report.Date.Day);
-                    jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
-                    jsonArray.Add(jsonObject);
-                }
-            }
+            //foreach(var report in reports)
+            //{
+            //    if (report.Date != null && report.Flow != null)
+            //    {
+            //        JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
+            //        jsonObject.Add("year", report.Date.Year);
+            //        jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
+            //        jsonObject.Add("day", report.Date.Day);
+            //        jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
+            //        jsonArray.Add(jsonObject);
+            //    }
+            //}
 
-            return jsonArray.ToString();
+            return JsonConvert.SerializeObject(reports, _jsonSerializerSettings);
         }
 
         [HttpGet]

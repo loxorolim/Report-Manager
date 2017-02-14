@@ -1,75 +1,91 @@
-﻿<!-- ko if: !editMode() -->
+﻿<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+<!-- ko if: !editMode() -->
 <div class="col-md-8 col-md-offset-2">
     <div class="report">
         <div class="report-header">
             <div class="report-date">
-                <div class="report-date-element"><span style="font-size: large"   data-bind="text: year" ></span></div>
-                <div class="report-date-element"><span style="font-size: medium"  data-bind="text: month"></span></div>
-                <div class="report-date-element"><span style="font-size: small"   data-bind="text: day"  ></span></div>
-                <div class="report-date-element"><span style="font-size: smaller" data-bind="text: hour" ></span></div>
-
+                <div class="report-date-element"><span style="font-size: large"   data-bind="text: moment(date()).format('DD/MM/YYYY');" ></span></div>
+                <div class="report-date-element"><span style="font-size: medium"  data-bind="text: moment(date()).format('HH:mm');"></span></div>
             </div>
             <div class="report-title">
                 <span style="font-size: xx-large" data-bind="text: flow, visible: !editMode()"></span>
             </div>
         </div>
         <div class="report-content">
-            <!-- ko if: "status" in $data -->
+            <!-- ko if: status() != null -->
             <div class="report-header">
                <span class="report-cell-left"><strong>Estado:</strong></span>
                <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
 
-            <!-- ko if: "application" in $data -->
+            <!-- ko if: application() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>
                 <span class="report-cell-right" data-bind="text: application, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "impact" in $data -->
+            <!-- ko if: impact() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Impacto:</strong></span>
                 <span class="report-cell-right" data-bind="text: impact, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "workaround" in $data -->
+            <!-- ko if: workaround() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
                 <span class="report-cell-right" data-bind="text: workaround, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "workaroundTime" in $data -->
+            <!-- ko if: workaroundTime() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
-                <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: workaroundTime, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "reporter" in $data -->
+            <!-- ko if: reporter() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
                 <span class="report-cell-right" data-bind="text: reporter, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "solution" in $data -->
+            <!-- ko if: solution() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução:</strong></span>
                 <span class="report-cell-right" data-bind="text: solution, visible: !editMode()"></span>
             </div>
             <!-- /ko 
-            <!-- ko if: "solutionTime" in $data -->
+            <!-- ko if: solutionTime() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
                 <span class="report-cell-right" data-bind="text: solutionTime, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "description" in $data -->
+            <!-- ko if: description() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Problema:</strong></span>
                 <span class="report-cell-right" data-bind="text: description, visible: !editMode()"></span>
             </div>
             <!-- /ko -->
-            <!-- ko if: "responsibleTeam" in $data -->
+            <!-- ko if: responsibleTeam() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Time responsável:</strong></span>
                 <span class="report-cell-right" data-bind="text: responsibleTeam, visible: !editMode()"></span>
@@ -92,11 +108,6 @@
         <div class="report-header">
             <div class="report-date">
                 <div class="report-date-element"><input id="date" name="date" type="datetime-local" data-bind="value: date"></div>
-                @*<div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: large" data-bind="text: year"></span></div>
-                    <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: medium" data-bind="text: month"></span></div>
-                    <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: small" data-bind="text: day"></span></div>
-                    <div class="report-date-element"><span contentEditable="true" class="editable-element" style="font-size: smaller" data-bind="text: hour"></span></div>*@
-
             </div>
             <div class="report-title">
                 <input contentEditable="true" class="editable-element" style="font-size: xx-large" data-bind="value: flow">
