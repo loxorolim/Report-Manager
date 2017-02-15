@@ -24,11 +24,14 @@ namespace ReportManager
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap-datetimepicker.css",
+                      "~/Content/site.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
                       "~/Scripts/Commons/knockout-3.4.1.js",
-                      "~/Scripts/Commons/moment.min.js",
+                      "~/Scripts/Commons/moment-with-locales.min.js",
+                      "~/Scripts/Commons/bootstrap-datetimepicker.min.js",
                       "~/Scripts/Commons/knockout.mapping-latest.js",
                       "~/Scripts/Views/Home/index.js"
                       ));

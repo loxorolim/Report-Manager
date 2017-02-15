@@ -208,6 +208,8 @@
     <Compile Include="ViewModels\CreateReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -217,6 +219,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Commons\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\Commons\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\Commons\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\Commons\ai.0.15.0-build58334.min.js" />
     <Content Include="ApplicationInsights.config">

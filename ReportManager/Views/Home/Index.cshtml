@@ -3,15 +3,18 @@
     ViewBag.Title = "Index";
 }
 
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/index")
+
+
 <h2>Index</h2>
 <div data-bind="foreach: reports">
     @Html.Partial("~/Views/Report/ReportPartial.cshtml")
 </div>
-@*<div data-bind="selected">
-    @Html.Partial("~/Views/Report/EditReport.cshtml")
-</div>*@
 
-
-@Scripts.Render("~/bundles/index")
+@Styles.Render("~/Content/reportPartial")
 @Scripts.Render("~/bundles/reportPartial")
+
+
+
 

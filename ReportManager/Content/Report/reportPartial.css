@@ -1,17 +1,4 @@
-﻿.day{
-    font-size:large;
-    display:block;
-}
-.month {
-    font-size:large;
-    display:block;
-}
-.year {
-    font-size:medium;
-    display:block;
-}
-
-.report-header {
+﻿.report-header {
     display:table; 
     width:100%;
 }
