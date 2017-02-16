@@ -7,10 +7,22 @@
 @Scripts.Render("~/bundles/index")
 
 
-<h2>Index</h2>
+<div style="display:table; width:100%; margin-top:10px;" class="navbar-fixed-top">
+    <div style="display :table-cell; text-align:center;">
+        <div data-bind="click: function() { Index.setCreateMode(true) }" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span></div>
+    </div>
+</div>
+<!-- ko if: !createMode() -->
 <div data-bind="foreach: reports">
     @Html.Partial("~/Views/Report/ReportPartial.cshtml")
 </div>
+<!-- /ko -->
+<!-- ko if: createMode() -->
+<div data-bind="with: newReport">
+    @Html.Partial("~/Views/Report/ReportPartial.cshtml")
+</div>
+<!-- /ko -->
+
 
 @Styles.Render("~/Content/reportPartial")
 @Scripts.Render("~/bundles/reportPartial")

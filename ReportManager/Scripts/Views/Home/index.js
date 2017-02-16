@@ -5,12 +5,33 @@ var Index = {
     start: 0,
     numberToFetch: 100,
     viewModel: {
-        reports: ko.observableArray([])
+        reports: ko.observableArray([]),
+        createMode: ko.observable(false),
+        newReport: ko.observable({
+                      date : ko.observable(null),
+                    status : ko.observable(null),  
+                      flow : ko.observable(null),
+               application : ko.observable(null),
+                    impact : ko.observable(null),
+                workaround : ko.observable(null),
+            workaroundTime : ko.observable(null),
+                  solution : ko.observable(null),
+              solutionTime : ko.observable(null),
+                  reporter : ko.observable(null),
+               description : ko.observable(null),
+           responsibleTeam : ko.observable(null),
+                      mode : ko.observable("create")
+
+        }),
+
     },
     init: function () {
         Index.setupDatetimePicker();
         ko.applyBindings(Index.viewModel);
         Index.fetchReports();
+    },
+    setCreateMode: function (bool) {
+        Index.viewModel.createMode(bool);
     },
     fetchReports: function () {
         $.ajax({
@@ -24,7 +45,7 @@ var Index = {
 
             success: function (result) {
                 result.forEach(function (entry, index) {
-                    result[index]["editMode"] = false
+                    result[index]["mode"] = "view"
                     result[index]["date"] = new Date(result[index]["date"]);
                     result[index] = ko.mapping.fromJS(entry);
                 });

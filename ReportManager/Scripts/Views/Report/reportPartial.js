@@ -2,7 +2,7 @@
     makeCopy: function (report) {
         report["copy"] = {};
         for (var attribute in report) {
-            if (attribute !== "__ko_mapping__" && attribute !== "editMode" && attribute !== "copy") {
+            if (attribute !== "__ko_mapping__" && attribute !== "mode" && attribute !== "copy") {
                 report["copy"][attribute] = report[attribute]();
             }
         }
@@ -12,7 +12,10 @@
             report[attribute](report["copy"][attribute]);
         }
     },
-    setEditMode: function (report, editMode) {
-        report["editMode"](editMode);
+    setEditMode: function (report) {
+        report["mode"]("edit");
+    },
+    setViewMode: function(report) {
+        report["mode"]("view");
     }
 }

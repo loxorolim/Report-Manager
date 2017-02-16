@@ -1,4 +1,4 @@
-﻿<!-- ko if: !editMode() -->
+﻿<!-- ko if: mode() == "view" -->
 <div class="col-md-8 col-md-offset-2">
     <div class="report">
         <div class="report-header">
@@ -7,83 +7,83 @@
                 <div class="report-date-element"><span style="font-size: medium"  data-bind="text: moment(date()).format('HH:mm')"></span></div>
             </div>
             <div class="report-title">
-                <span style="font-size: xx-large" data-bind="text: flow, visible: !editMode()"></span>
+                <span style="font-size: xx-large" data-bind="text: flow"></span>
             </div>
         </div>
         <div class="report-content">
             <!-- ko if: status() != null -->
             <div class="report-header">
                <span class="report-cell-left"><strong>Estado:</strong></span>
-               <span class="report-cell-right" data-bind="text: status, visible: !editMode()"></span>
+               <span class="report-cell-right" data-bind="text: status"></span>
             </div>
             <!-- /ko -->
 
             <!-- ko if: application() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>
-                <span class="report-cell-right" data-bind="text: application, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: application"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: impact() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Impacto:</strong></span>
-                <span class="report-cell-right" data-bind="text: impact, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: impact"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: workaround() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução paliativa:</strong></span>
-                <span class="report-cell-right" data-bind="text: workaround, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: workaround"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: workaroundTime() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
-                <span class="report-cell-right" data-bind="text: workaroundTime, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: workaroundTime"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: reporter() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
-                <span class="report-cell-right" data-bind="text: reporter, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: reporter"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: solution() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Solução:</strong></span>
-                <span class="report-cell-right" data-bind="text: solution, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: solution"></span>
             </div>
             <!-- /ko 
             <!-- ko if: solutionTime() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo da solução:</strong></span>
-                <span class="report-cell-right" data-bind="text: solutionTime, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: solutionTime"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: description() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Problema:</strong></span>
-                <span class="report-cell-right" data-bind="text: description, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: description"></span>
             </div>
             <!-- /ko -->
             <!-- ko if: responsibleTeam() != null -->
             <div class="report-header">
                 <span class="report-cell-left"><strong>Time responsável:</strong></span>
-                <span class="report-cell-right" data-bind="text: responsibleTeam, visible: !editMode()"></span>
+                <span class="report-cell-right" data-bind="text: responsibleTeam"></span>
             </div>
             <!-- /ko -->
         </div>
         <div class="report-header">
             <div class="report-footer">
-                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setEditMode($data,true); ReportPartial.makeCopy($data)}">Editar <span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setEditMode($data,false); ReportPartial.makeCopy($data)}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setEditMode($data); ReportPartial.makeCopy($data)}">Editar <span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setViewMode($data); ReportPartial.makeCopy($data)}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
                 <button class="btn btn-default">Apagar <span class="glyphicon glyphicon-trash"></span></button>
             </div>
         </div>
     </div>
 </div>
 <!-- /ko -->
-<!-- ko if: editMode() -->
+<!-- ko if: (mode() == "edit" || mode () == "create") -->
 <div class="col-md-8 col-md-offset-2">
     <div class="report">
         <div class="report-header">
@@ -126,7 +126,7 @@
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Tempo na madrugada:</strong></span>
-                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: status" />
+                <input contentEditable="true" class="report-cell-right editable-element" data-bind="value: workaroundTime" />
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Incomodado:</strong></span>
@@ -151,8 +151,14 @@
         </div>
         <div class="report-header">
             <div class="report-footer">
-                <button class="btn btn-success" data-bind="click: function() {ReportPartial.setEditMode($data,false);}">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
-                <button class="btn btn-danger"  data-bind="click: function() {ReportPartial.setEditMode($data,false); ReportPartial.restore($data)}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
+                <!-- ko if: mode() == "edit" -->
+                    <button class="btn btn-success" data-bind="visible: mode() == 'edit', click: function() {ReportPartial.setViewMode($data);}">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
+                    <button class="btn btn-danger"  data-bind="click: function() {ReportPartial.setViewMode($data); ReportPartial.restore($data)}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
+                <!-- /ko -->
+                <!-- ko if: mode() == "create" -->
+                    <button class="btn btn-success" data-bind="visible: mode() == 'create', click function() {ReportPartial.setViewMode($data);}">Criar <span class="glyphicon glyphicon-check"></span></button>
+                    <button class="btn btn-danger" data-bind="click: function() { Index.setCreateMode(false);}">Cancelar <span class="glyphicon glyphicon-remove-sign"></span></button>
+                <!-- /ko -->
             </div>
         </div>
     </div>
