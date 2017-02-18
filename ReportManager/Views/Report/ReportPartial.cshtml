@@ -99,16 +99,7 @@
             <div class="report-header">
                 <span class="report-cell-left"><strong>Estado:</strong></span>
                 <div>
-                    <select id="status" name="status" data-bind="value: status">
-                        @{
-                            int counter = 0;
-                            foreach (var statusType in @ViewData["ReportStatuses"] as IList<string>)
-                            {
-                                <option value="@counter">@statusType</option>
-                                counter++;
-                            }
-                        }
-                    </select>
+                    <select id="status" data-bind="options: statusOptions, value: status"></select>
                 </div>
 
             </div>

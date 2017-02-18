@@ -37,21 +37,6 @@ namespace ReportManager.Controllers
         {
             IEnumerable<ReportDTO> reports = _reportBR.GetReportCollectionByRecentDate(start,size);
 
-            //JArray jsonArray = new JArray();
-
-            //foreach(var report in reports)
-            //{
-            //    if (report.Date != null && report.Flow != null)
-            //    {
-            //        JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
-            //        jsonObject.Add("year", report.Date.Year);
-            //        jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
-            //        jsonObject.Add("day", report.Date.Day);
-            //        jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
-            //        jsonArray.Add(jsonObject);
-            //    }
-            //}
-
             return JsonConvert.SerializeObject(reports, _jsonSerializerSettings);
         }
 

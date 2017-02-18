@@ -48,6 +48,7 @@ var Index = {
                     result[index]["mode"] = "view"
                     result[index]["date"] = new Date(result[index]["date"]);
                     result[index] = ko.mapping.fromJS(entry);
+                    
                 });
                 var concatedResult = Index.viewModel.reports().concat(result);
                 Index.viewModel.reports(concatedResult);
