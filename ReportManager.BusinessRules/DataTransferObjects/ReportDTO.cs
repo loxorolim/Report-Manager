@@ -7,10 +7,10 @@ namespace ReportManager.BusinessRules.DataTransferObjects
 {
     public class ReportDTO
     {
-        public List<string> StatusOptions { get { return Enum.GetNames(typeof(ReportStatusEnum)).ToList();} }
+        public IEnumerable<string> StatusOptions { get { return Enum.GetValues(typeof(ReportStatusEnum)).Cast<ReportStatusEnum>().Select(x => EnumTools.GetDescription(x)); } }
 
         public DateTime Date { get; set; }
-        public int Status { get; set; }
+        public ReportStatusEnum Status { get; set; }
         public string Flow { get; set; }
         public string Application { get; set; }
         public string Impact { get; set; }

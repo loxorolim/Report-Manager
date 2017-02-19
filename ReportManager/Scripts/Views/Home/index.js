@@ -9,7 +9,8 @@ var Index = {
         createMode: ko.observable(false),
         newReport: ko.observable({
                       date : ko.observable(null),
-                    status : ko.observable(null),  
+                     status: ko.observable(null),
+              statusOptions: ko.observable(null),
                       flow : ko.observable(null),
                application : ko.observable(null),
                     impact : ko.observable(null),

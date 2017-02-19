@@ -16,11 +16,6 @@ namespace ReportManager.BusinessRules.Report
             _reportRepository = new ReportRepository(Constants.ReportConnectionString);
         }
 
-        public List<string> GetReportStatusTypes()
-        {
-            return new List<string> { "Aguardando", "Alertado", "Solucionado" };
-        }
-
         public IEnumerable<ReportDTO> GetReportCollectionByRecentDate(int start, int size)
         {
             IEnumerable<ReportEntity> reports = _reportRepository.GetReportCollectionByRecentDate(start, size);

@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using ReportManager.BusinessRules.DataTransferObjects;
 using ReportManager.BusinessRules.Report;
-using ReportManager.Commons;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -43,19 +41,7 @@ namespace ReportManager.Controllers
         [HttpGet]
         public string GetReportJson(int id)
         {
-            ReportDTO report = _reportBR.GetReportById(id);
-
-            if (report.Date != null && report.Flow != null)
-            {
-                JObject jsonObject = JObject.FromObject(report, _jsonSerializer);
-                jsonObject.Add("year", report.Date.Year);
-                jsonObject.Add("month", ((MonthEnum)report.Date.Month).ToString());
-                jsonObject.Add("day", report.Date.Day);
-                jsonObject.Add("hour", report.Date.Hour + ":" + report.Date.Minute);
-                return jsonObject.ToString();
-            }
             return "";
-
         }
 
         [HttpGet]
@@ -70,10 +56,6 @@ namespace ReportManager.Controllers
         [HttpGet]
         public ActionResult CreateReport()
         {
-            List<string> reportStatusTypes = _reportBR.GetReportStatusTypes();
-
-            ViewData["ReportStatuses"] = reportStatusTypes;
-
             return View();
         }
 

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace ReportManager.Commons
 {
     public enum ReportStatusEnum
     {
-        Awaiting = 0,
-        Alerted = 1,
-        Resolved = 2
+        [Description("Em espera")]
+        Awaiting,
+        [Description("Alertado")]
+        Alerted,
+        [Description("Resolvido")]
+        Resolved
     }
 }

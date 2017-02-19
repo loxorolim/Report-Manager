@@ -1,5 +1,4 @@
 ﻿using ReportManager.BusinessRules.Report;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ReportManager.Controllers
@@ -15,10 +14,6 @@ namespace ReportManager.Controllers
 
         public ActionResult Index()
         {
-            List<string> reportStatusTypes = _reportBR.GetReportStatusTypes();
-
-            ViewData["ReportStatuses"] = reportStatusTypes;
-
             return View();
         }
 
@@ -35,5 +30,6 @@ namespace ReportManager.Controllers
 
             return View();
         }
+
     }
 }
