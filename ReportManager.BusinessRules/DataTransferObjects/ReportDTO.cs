@@ -1,14 +1,10 @@
 ﻿using ReportManager.Commons;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ReportManager.BusinessRules.DataTransferObjects
 {
     public class ReportDTO
     {
-        public IEnumerable<string> StatusOptions { get { return Enum.GetValues(typeof(ReportStatusEnum)).Cast<ReportStatusEnum>().Select(x => EnumTools.GetDescription(x)); } }
-
         public DateTime Date { get; set; }
         public ReportStatusEnum Status { get; set; }
         public string Flow { get; set; }

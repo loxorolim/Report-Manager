@@ -3,7 +3,10 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using ReportManager.BusinessRules.DataTransferObjects;
 using ReportManager.BusinessRules.Report;
+using ReportManager.Commons;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ReportManager.Controllers
@@ -80,9 +83,18 @@ namespace ReportManager.Controllers
         {
             return View();
         }
-        
 
+        [HttpGet]
+        public string GetReportUtilsJson()
+        {
+            object utils = new
+            {
+                EmptyReport = new ReportDTO(),
+                ReportStatusOptions = Enum.GetValues(typeof(ReportStatusEnum)).Cast<ReportStatusEnum>().Select(x => EnumTools.GetDescription(x))
 
+            };
 
+            return JsonConvert.SerializeObject(utils, _jsonSerializerSettings);
+        }
     }
 }

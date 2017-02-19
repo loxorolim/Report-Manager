@@ -99,9 +99,8 @@
             <div class="report-header">
                 <span class="report-cell-left"><strong>Estado:</strong></span>
                 <div>
-                    <select id="status" data-bind="options: statusOptions, value: status"></select>
+                    <select id="status" data-bind="options: $parent.statusOptions, value: status"></select>
                 </div>
-
             </div>
             <div class="report-header">
                 <span class="report-cell-left"><strong>Aplicação:</strong></span>

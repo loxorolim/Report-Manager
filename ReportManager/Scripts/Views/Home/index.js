@@ -6,29 +6,12 @@ var Index = {
     numberToFetch: 100,
     viewModel: {
         reports: ko.observableArray([]),
-        createMode: ko.observable(false),
-        newReport: ko.observable({
-                      date : ko.observable(null),
-                     status: ko.observable(null),
-              statusOptions: ko.observable(null),
-                      flow : ko.observable(null),
-               application : ko.observable(null),
-                    impact : ko.observable(null),
-                workaround : ko.observable(null),
-            workaroundTime : ko.observable(null),
-                  solution : ko.observable(null),
-              solutionTime : ko.observable(null),
-                  reporter : ko.observable(null),
-               description : ko.observable(null),
-           responsibleTeam : ko.observable(null),
-                      mode : ko.observable("create")
-
-        }),
-
+        createMode: ko.observable(false)
     },
     init: function () {
         Index.setupDatetimePicker();
         ko.applyBindings(Index.viewModel);
+        Index.fetchReportUtils();
         Index.fetchReports();
     },
     setCreateMode: function (bool) {
@@ -55,6 +38,21 @@ var Index = {
                 Index.viewModel.reports(concatedResult);
                 Index.start += result.length;
 
+            },
+
+            error: function (error) {
+            }
+        });
+    },
+    fetchReportUtils: function () {
+        $.ajax({
+            type: 'GET',
+            url: '/Report/GetReportUtilsJson',
+            dataType: 'json',
+            success: function (result) {
+                result["emptyReport"]["mode"] = "create";
+                Index.viewModel.newReport = ko.mapping.fromJS(result["emptyReport"]);
+                Index.viewModel.statusOptions = result["reportStatusOptions"];
             },
 
             error: function (error) {
