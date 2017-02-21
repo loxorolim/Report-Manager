@@ -34,8 +34,14 @@ namespace ReportManager.BusinessRules.Report
             ReportEntity reportEntity = Mapper.Map<ReportDTO,ReportEntity>(reportDto);
             _reportRepository.InsertReport(reportEntity);
             //validate
-
-
         }
+        public void UpdateReport(ReportDTO reportDto)
+        {
+            ReportEntity reportEntity = Mapper.Map<ReportDTO, ReportEntity>(reportDto);
+            _reportRepository.UpdateReport(reportEntity);
+            //validate
+        }
+
+
     }
 }

@@ -146,7 +146,7 @@
                     <button class="btn btn-danger"  data-bind="click: function() {ReportPartial.setViewMode($data); ReportPartial.restore($data)}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
                 <!-- /ko -->
                 <!-- ko if: mode() == "create" -->
-                    <button class="btn btn-success" data-bind="visible: mode() == 'create', click function() {ReportPartial.setViewMode($data);}">Criar <span class="glyphicon glyphicon-check"></span></button>
+                    <button class="btn btn-success" data-bind="visible: mode() == 'create', click: function() { ReportPartial.createReport($data); }">Criar <span class="glyphicon glyphicon-check"></span></button>
                     <button class="btn btn-danger" data-bind="click: function() { Index.setCreateMode(false);}">Cancelar <span class="glyphicon glyphicon-remove-sign"></span></button>
                 <!-- /ko -->
             </div>

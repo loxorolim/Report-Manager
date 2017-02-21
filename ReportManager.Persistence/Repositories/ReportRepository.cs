@@ -31,6 +31,16 @@ namespace ReportManager.Persistence.Repositories
             }
         }
 
+        public void UpdateReport(ReportEntity report)
+        {
+            using (var db = new LiteDatabase(_connectionString))
+            {
+                var reports = db.GetCollection<ReportEntity>("reports");
+
+                reports.Update(report);
+            }
+        }
+
         public void InsertReport(ReportEntity report)
         {
             using (var db = new LiteDatabase(_connectionString))

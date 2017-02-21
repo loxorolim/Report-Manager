@@ -33,5 +33,19 @@
             error: function (error) {
             }
         });
+    },
+    createReport: function (report) {
+        var dateTime = report["date"]().toISOString();
+        report["date"](dateTime);
+        $.ajax({
+            type: 'POST',
+            url: '/Report/CreateReport',
+            data: report,
+            success: function () {
+            },
+
+            error: function (error) {
+            }
+        });
     }
 }

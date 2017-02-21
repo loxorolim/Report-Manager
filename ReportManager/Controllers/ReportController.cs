@@ -5,7 +5,6 @@ using ReportManager.BusinessRules.DataTransferObjects;
 using ReportManager.BusinessRules.Report;
 using ReportManager.Commons;
 using System.Collections.Generic;
-using System.Net;
 using System.Web.Mvc;
 
 namespace ReportManager.Controllers
@@ -41,53 +40,15 @@ namespace ReportManager.Controllers
         }
 
         [HttpPost]
-        public HttpStatusCode UpdateReport(ReportDTO report)
+        public void UpdateReport(ReportDTO report)
         {
-
-            return HttpStatusCode.OK;
-        }
-
-        [HttpGet]
-        public string GetReportJson(int id)
-        {
-            return "";
-        }
-
-        [HttpGet]
-        public ActionResult GetReport(int id)
-        {
-            
-            return View(id);
-
-        }
-
-
-        [HttpGet]
-        public ActionResult CreateReport()
-        {
-            return View();
+            _reportBR.UpdateReport(report);
         }
 
         [HttpPost]
-        public ActionResult CreateReport(ReportDTO reportDto)
+        public void CreateReport(ReportDTO report)
         {
-            //Fluxo não vai poder ser nulo.
-            if(ModelState.IsValid)
-            {
-                _reportBR.CreateReport(reportDto);
-                return View("Index");
-            }
-            // deu xibu
-            return View("500");
-            
-            
-        }
-
-
-        [HttpPost]
-        public ActionResult InsertReport(int id)
-        {
-            return View();
+            _reportBR.CreateReport(report);
         }
 
         [HttpGet]
