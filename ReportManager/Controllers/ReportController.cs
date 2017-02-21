@@ -4,9 +4,8 @@ using Newtonsoft.Json.Serialization;
 using ReportManager.BusinessRules.DataTransferObjects;
 using ReportManager.BusinessRules.Report;
 using ReportManager.Commons;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace ReportManager.Controllers
@@ -39,6 +38,13 @@ namespace ReportManager.Controllers
             IEnumerable<ReportDTO> reports = _reportBR.GetReportCollectionByRecentDate(start,size);
 
             return JsonConvert.SerializeObject(reports, _jsonSerializerSettings);
+        }
+
+        [HttpPost]
+        public HttpStatusCode UpdateReport(ReportDTO report)
+        {
+
+            return HttpStatusCode.OK;
         }
 
         [HttpGet]
@@ -87,10 +93,10 @@ namespace ReportManager.Controllers
         [HttpGet]
         public string GetReportUtilsJson()
         {
-            object utils = new
+            var utils = new
             {
                 EmptyReport = new ReportDTO(),
-                ReportStatusOptions = Enum.GetValues(typeof(ReportStatusEnum)).Cast<ReportStatusEnum>().Select(x => EnumTools.GetDescription(x))
+                ReportStatusOptions = EnumTools.GetEnumList<ReportStatusEnum>()
 
             };
 

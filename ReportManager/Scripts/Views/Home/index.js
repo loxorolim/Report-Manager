@@ -6,7 +6,10 @@ var Index = {
     numberToFetch: 100,
     viewModel: {
         reports: ko.observableArray([]),
-        createMode: ko.observable(false)
+        createMode: ko.observable(false),
+        newReport: ko.observable({}),
+        statusOptions: ko.observable({}),
+
     },
     init: function () {
         Index.setupDatetimePicker();
@@ -31,9 +34,17 @@ var Index = {
                 result.forEach(function (entry, index) {
                     result[index]["mode"] = "view"
                     result[index]["date"] = new Date(result[index]["date"]);
+                    result[index]["statusText"] = function () {
+                        for (var i = 0; i < Index.viewModel.statusOptions.length; i++) {
+                            if (Index.viewModel.statusOptions[i]["id"] == result[index]["status"]()) {
+                                return Index.viewModel.statusOptions[i]["value"];
+                            }
+                        }
+                    }
                     result[index] = ko.mapping.fromJS(entry);
                     
                 });
+
                 var concatedResult = Index.viewModel.reports().concat(result);
                 Index.viewModel.reports(concatedResult);
                 Index.start += result.length;

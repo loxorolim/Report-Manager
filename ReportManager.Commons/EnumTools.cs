@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -18,5 +19,23 @@ namespace ReportManager.Commons
             }
             return en.ToString();
         }
+
+        public static List<EnumModel> GetEnumList<T>()
+        {
+            var ret = new List<EnumModel>();
+
+            foreach (Enum element in Enum.GetValues(typeof(T)))
+            {
+                ret.Add(new EnumModel() { Id = Convert.ToInt32(element), Value = GetDescription(element) });
+            }
+
+            return ret;
+        }
+    }
+
+    public class EnumModel
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
     }
 }

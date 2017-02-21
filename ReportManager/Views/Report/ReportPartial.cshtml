@@ -14,7 +14,7 @@
             <!-- ko if: status() != null -->
             <div class="report-header">
                <span class="report-cell-left"><strong>Estado:</strong></span>
-               <span class="report-cell-right" data-bind="text: status"></span>
+               <span class="report-cell-right" data-bind="text: statusText()"></span>
             </div>
             <!-- /ko -->
 
@@ -99,7 +99,7 @@
             <div class="report-header">
                 <span class="report-cell-left"><strong>Estado:</strong></span>
                 <div>
-                    <select id="status" data-bind="options: $parent.statusOptions, value: status"></select>
+                    <select id="status" data-bind="options: $parent.statusOptions, optionsText: 'value', optionsValue: 'id', value: status"></select>
                 </div>
             </div>
             <div class="report-header">
@@ -142,7 +142,7 @@
         <div class="report-header">
             <div class="report-footer">
                 <!-- ko if: mode() == "edit" -->
-                    <button class="btn btn-success" data-bind="visible: mode() == 'edit', click: function() {ReportPartial.setViewMode($data);}">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
+                    <button class="btn btn-success" data-bind="visible: mode() == 'edit', click: function() { ReportPartial.updateReport($data); }">Atualizar <span class="glyphicon glyphicon-ok-sign"></span></button>
                     <button class="btn btn-danger"  data-bind="click: function() {ReportPartial.setViewMode($data); ReportPartial.restore($data)}">Retornar <span class="glyphicon glyphicon-remove-sign"></span></button>
                 <!-- /ko -->
                 <!-- ko if: mode() == "create" -->

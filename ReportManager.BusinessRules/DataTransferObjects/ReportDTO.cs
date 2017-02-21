@@ -1,12 +1,12 @@
-﻿using ReportManager.Commons;
-using System;
+﻿using System;
 
 namespace ReportManager.BusinessRules.DataTransferObjects
 {
     public class ReportDTO
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
-        public ReportStatusEnum Status { get; set; }
+        public int Status { get; set; }
         public string Flow { get; set; }
         public string Application { get; set; }
         public string Impact { get; set; }
