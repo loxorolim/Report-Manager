@@ -15,10 +15,18 @@
 .report-title {
     display:table-cell; 
     border-style:solid; 
-    background-color:whitesmoke;
     border-width: 2px; 
     text-align:center; 
     vertical-align: middle;
+}
+.report-awaiting{
+    background-color:whitesmoke;
+}
+.report-alerted{
+    background-color:palegoldenrod;
+}
+.report-resolved{
+    background-color: palegreen;
 }
 .report-footer {
     display:table-cell; 

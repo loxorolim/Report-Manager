@@ -2,11 +2,11 @@
 <div class="col-md-8 col-md-offset-2">
     <div class="report">
         <div class="report-header">
-            <div class="report-date">
+            <div class="report-date"">
                 <div class="report-date-element"><span style="font-size: large"   data-bind="text: moment(date()).format('DD/MM/YYYY')" ></span></div>
                 <div class="report-date-element"><span style="font-size: medium"  data-bind="text: moment(date()).format('HH:mm')"></span></div>
             </div>
-            <div class="report-title">
+            <div class="report-title" data-bind="css: { 'report-awaiting': status() == 0, 'report-alerted': status() == 1,'report-resolved': status() == 2, }">
                 <span style="font-size: xx-large" data-bind="text: flow"></span>
             </div>
         </div>
@@ -76,8 +76,8 @@
         <div class="report-header">
             <div class="report-footer">
                 <button class="btn btn-default" data-bind="click: function() { ReportPartial.setEditMode($data); ReportPartial.makeCopy($data)}">Editar <span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setViewMode($data); ReportPartial.makeCopy($data)}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
-                <button class="btn btn-default">Apagar <span class="glyphicon glyphicon-trash"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { Index.setCopyMode($data)}">Copiar <span class="glyphicon glyphicon-copy"></span></button>
+                <button class="btn btn-default" data-bind="click: function() { ReportPartial.setViewMode($data); ReportPartial.deleteReport($data)}">Apagar <span class="glyphicon glyphicon-trash"></span></button>
             </div>
         </div>
     </div>
@@ -91,7 +91,7 @@
                 <div class="report-date-element"><input data-bind='dateTimePicker: date' /></div>
 
             </div>
-            <div class="report-title">
+            <div class="report-title" data-bind="css: { 'report-awaiting': status() == 0, 'report-alerted': status() == 1,'report-resolved': status() == 2, }">
                 <input contentEditable="true" class="editable-element" style="font-size: xx-large" data-bind="value: flow">
             </div>
         </div>

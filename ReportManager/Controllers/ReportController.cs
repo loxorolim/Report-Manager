@@ -51,6 +51,12 @@ namespace ReportManager.Controllers
             _reportBR.CreateReport(report);
         }
 
+        [HttpPost]
+        public void DeleteReport(ReportDTO report)
+        {
+            _reportBR.DeleteReport(report);
+        }
+
         [HttpGet]
         public string GetReportUtilsJson()
         {

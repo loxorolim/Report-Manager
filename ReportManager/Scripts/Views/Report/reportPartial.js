@@ -1,11 +1,15 @@
 ﻿var ReportPartial = {
-    makeCopy: function (report) {
-        report["copy"] = {};
+    getCopy: function (report) {
+        var copy = {};
         for (var attribute in report) {
-            if (attribute !== "__ko_mapping__" && attribute !== "mode" && attribute !== "copy") {
-                report["copy"][attribute] = report[attribute]();
+            if (attribute !== "__ko_mapping__" && attribute !== "mode" && attribute !== "copy" && attribute !== "id") {
+                copy[attribute] = report[attribute]();
             }
         }
+        return copy;
+    },
+    makeCopy: function (report) {
+        report["copy"] = this.getCopy(report);
     },
     restore: function (report) {
         for (var attribute in report["copy"]) {
@@ -42,8 +46,21 @@
             url: '/Report/CreateReport',
             data: report,
             success: function () {
+                location.reload();
             },
 
+            error: function (error) {
+            }
+        });
+    },
+    deleteReport: function (report) {
+        $.ajax({
+            type: 'POST',
+            url: '/Report/DeleteReport',
+            data: report,
+            success: function () {
+                location.reload();
+            },
             error: function (error) {
             }
         });

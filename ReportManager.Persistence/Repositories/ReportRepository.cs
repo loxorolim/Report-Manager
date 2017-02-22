@@ -50,5 +50,15 @@ namespace ReportManager.Persistence.Repositories
                 reports.Insert(report);
             }
         }
+
+        public void DeleteReport(ReportEntity report)
+        {
+            using (var db = new LiteDatabase(_connectionString))
+            {
+                var reports = db.GetCollection<ReportEntity>("reports");
+
+                reports.Delete(report.Id);
+            }
+        }
     }
 }

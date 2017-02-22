@@ -20,6 +20,12 @@ var Index = {
     setCreateMode: function (bool) {
         Index.viewModel.createMode(bool);
     },
+    setCopyMode: function (report) {
+        var copy = ReportPartial.getCopy(report);
+        copy["mode"] = "create";
+        Index.viewModel.newReport(ko.mapping.fromJS(copy));
+        Index.setCreateMode(true);
+    },
     fetchReports: function () {
         $.ajax({
             type: 'GET',
@@ -62,7 +68,7 @@ var Index = {
             dataType: 'json',
             success: function (result) {
                 result["emptyReport"]["mode"] = "create";
-                Index.viewModel.newReport = ko.mapping.fromJS(result["emptyReport"]);
+                Index.viewModel.newReport(ko.mapping.fromJS(result["emptyReport"]));
                 Index.viewModel.statusOptions = result["reportStatusOptions"];
             },
 

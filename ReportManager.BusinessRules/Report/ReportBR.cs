@@ -41,6 +41,12 @@ namespace ReportManager.BusinessRules.Report
             _reportRepository.UpdateReport(reportEntity);
             //validate
         }
+        public void DeleteReport(ReportDTO reportDto)
+        {
+            ReportEntity reportEntity = Mapper.Map<ReportDTO, ReportEntity>(reportDto);
+            _reportRepository.DeleteReport(reportEntity);
+            //validate
+        }
 
 
     }
