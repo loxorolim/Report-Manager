@@ -53,7 +53,7 @@ var Index = {
 
                 var concatedResult = Index.viewModel.reports().concat(result);
                 Index.viewModel.reports(concatedResult);
-                Index.start += result.length;
+                //Index.start += result.length;
 
             },
 
@@ -75,6 +75,11 @@ var Index = {
             error: function (error) {
             }
         });
+    },
+    refresh: function() {
+        Index.viewModel.reports([]);
+        Index.fetchReports();
+        Index.setCreateMode(false);
     },
     setupDatetimePicker: function () {
         ko.bindingHandlers.dateTimePicker = {

@@ -46,7 +46,7 @@
             url: '/Report/CreateReport',
             data: report,
             success: function () {
-                location.reload();
+                Index.refresh();
             },
 
             error: function (error) {
@@ -59,7 +59,7 @@
             url: '/Report/DeleteReport',
             data: report,
             success: function () {
-                location.reload();
+                Index.refresh();
             },
             error: function (error) {
             }
